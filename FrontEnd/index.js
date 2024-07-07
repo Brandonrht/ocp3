@@ -116,6 +116,9 @@ function clickbutton() {
 async function init() {
     const token = sessionStorage.getItem("SB_token");
 
+    // Sélection de l'élément avec la classe "adminmode"
+    const adminModeElement = document.querySelector(".adminmode");
+
     // Si l'utilisateur est connecté
     if (token) {
         // Cacher le bouton de login
@@ -139,6 +142,17 @@ async function init() {
         // Afficher tous les travaux
         await AfficheWorks();
     } else {
+        // Cacher le bouton "Modifier"
+        const modifierButton = document.querySelector('.bts-modif');
+        if (modifierButton) {
+            modifierButton.style.display = "none";
+        }
+
+        // Cacher la classe "adminmode"
+        if (adminModeElement) {
+            adminModeElement.style.display = "none";
+        }
+
         // Afficher les filtres et les travaux si l'utilisateur n'est pas connecté
         await AfficheBouttonFiltre();
         await AfficheWorks();
@@ -147,6 +161,7 @@ async function init() {
 
 // Appel de la fonction d'initialisation
 init();
+
 
 // Gestion du logout
 const logoutButton = document.querySelector(".logout-btn");
@@ -180,6 +195,7 @@ if (closeButton) {
     closeButton.addEventListener('click', function() {
         modal.style.display = 'none';  // Fermeture de la modal
     });
+    
 }
 
 // Fermeture de la modal lorsqu'on clique en dehors de la modal
@@ -188,3 +204,4 @@ window.addEventListener('click', function(event) {
         modal.style.display = 'none';  // Fermeture de la modal
     }
 });
+
