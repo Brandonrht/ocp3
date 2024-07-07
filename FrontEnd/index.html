@@ -15,13 +15,15 @@
 </head>
 
 <body>
+	<section class="admin">mode test log</section>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
 			<ul>
 				<li>projets</li>
 				<li>contact</li>
-				<li><a href="login.html">login</a></li>
+				<li class="adminhide"><a href="login.html" class="login-btn">login</a></li>
+				<li class="admin logout-btn" style="display:none;">logout</li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -43,12 +45,24 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2>Mes Projets</h2>
-			<div class="filters"> 
-				<!-- bouton generer sur javascript -->
+			<h2>Mes Projets
+				<button class="bts-modif"> Modifier</button>
+				<!-- bouton généré via javascript -->
+				<!-- Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Galerie photo</h2>
+        <button>Ajouter une photo</button>
+    </div>
+</div>
+
+			</h2>
+			<div class="filters" id="filtersContainer">
+				<!-- Les boutons de filtre seront générés ici -->
 			</div>
-			<div class="gallery">  
-				<!-- work geré via javascript -->
+			<div class="gallery">
+				<!-- work géré via javascript -->
 			</div>
 		</section>
 		<section id="contact">
@@ -65,7 +79,6 @@
 			</form>
 		</section>
 	</main>
-
 	<footer>
 		<nav>
 			<ul>

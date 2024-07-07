@@ -23,11 +23,11 @@ function loginUser(form) {
       password: form.password.value,
     }),
   })
-  .then(handleResponse)
-  .catch((error) => {
-    console.error("Error during fetch:", error);
-    alert("An error occurred. Please try again.");
-  });
+    .then(handleResponse)
+    .catch((error) => {
+      console.error("Error during fetch:", error);
+      alert("An error occurred. Please try again.");
+    });
 }
 
 function handleResponse(response) {
@@ -35,10 +35,11 @@ function handleResponse(response) {
     alert("Email ou mot de passe erronés");
   } else {
     response.json().then((data) => {
-      sessionStorage.setItem("token", data.token); // STORE TOKEN
+      sessionStorage.setItem("SB_token", data.token); // STORE TOKEN
       window.location.replace("index.html");
     });
   }
 }
 
 document.addEventListener("submit", handleSubmit);
+
