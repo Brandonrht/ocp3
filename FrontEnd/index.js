@@ -185,21 +185,21 @@ const closeButton = document.querySelector('.close');
 
 // Ajout d'un événement de clic au bouton "Modifier"
 if (modifierButton) {
-    modifierButton.addEventListener('click', function() {
+    modifierButton.addEventListener('click', function () {
         modal.style.display = 'block';  // Affichage de la modal
     });
 }
 
 // Fermeture de la modal lorsqu'on clique sur le bouton de fermeture
 if (closeButton) {
-    closeButton.addEventListener('click', function() {
+    closeButton.addEventListener('click', function () {
         modal.style.display = 'none';  // Fermeture de la modal
     });
-    
+
 }
 
 // Fermeture de la modal lorsqu'on clique en dehors de la modal
-window.addEventListener('click', function(event) {
+window.addEventListener('click', function (event) {
     if (event.target == modal) {
         modal.style.display = 'none';  // Fermeture de la modal
     }
