@@ -112,12 +112,10 @@ function clickbutton() {
     });
 }
 
+
 // Initialisation de l'affichage des projets et des filtres
 async function init() {
     const token = sessionStorage.getItem("SB_token");
-
-    // Sélection de l'élément avec la classe "adminmode"
-    const adminModeElement = document.querySelector(".adminmode");
 
     // Si l'utilisateur est connecté
     if (token) {
@@ -141,29 +139,40 @@ async function init() {
 
         // Afficher tous les travaux
         await AfficheWorks();
+
+        // Afficher les éléments avec la classe "admin"
+        const adminElements = document.querySelectorAll(".admin");
+        adminElements.forEach(element => {
+            element.style.display = "block";
+        });
     } else {
-        // Cacher le bouton "Modifier"
-        const modifierButton = document.querySelector('.bts-modif');
+        // Afficher les filtres et les travaux si l'utilisateur n'est pas connecté
+        await AfficheBouttonFiltre();
+        await AfficheWorks();
+
+        // Cacher la classe "admin"
+        const adminElements = document.querySelectorAll(".admin");
+        adminElements.forEach(element => {
+            element.style.display = "none";
+        });
+
+        // Cacher le bouton Modifier
+        const modifierButton = document.querySelector(".bts-modif");
         if (modifierButton) {
             modifierButton.style.display = "none";
         }
 
-        // Cacher la classe "adminmode"
+        // Cacherla classe "adminmode"
+        const adminModeElement = document.querySelector(".adminmode");
         if (adminModeElement) {
             adminModeElement.style.display = "none";
         }
-
-        // Afficher les filtres et les travaux si l'utilisateur n'est pas connecté
-        await AfficheBouttonFiltre();
-        await AfficheWorks();
     }
 }
 
-// Appel de la fonction d'initialisation
 init();
 
-
-// Gestion du logout
+// ajout logout
 const logoutButton = document.querySelector(".logout-btn");
 if (logoutButton) {
     logoutButton.addEventListener("click", () => {
@@ -172,36 +181,60 @@ if (logoutButton) {
     });
 }
 
-
-
 // Sélection du bouton "Modifier"
 const modifierButton = document.querySelector('.bts-modif');
 
-// Sélection de la modal
-const modal = document.getElementById('myModal');
+// Fonction pour afficher les travaux dans la modal
+async function afficheWorksDansModal() {
+    const worksFromApi = await getApiWorks(); // Récupération des projets depuis l'API
+    const galleryModal = document.querySelector(".gallery-modal"); // Sélection de la galerie dans la modal
+    galleryModal.innerHTML = ""; // Nettoyage de la galerie existante
 
-// Sélection du bouton de fermeture de la modal
-const closeButton = document.querySelector('.close');
+    worksFromApi.forEach(work => {
+        const workCard = document.createElement("figure");  // Création de la carte projet
+        workCard.dataset.id = `categorie${work.categoryId}`;
 
-// Ajout d'un événement de clic au bouton "Modifier"
+        const workImgWrapper = document.createElement("div");  // Wrapper pour l'image et le logo
+        workImgWrapper.className = "image-wrapper";
+
+        const workImg = document.createElement("img");  // Image du projet
+        workImg.src = work.imageUrl;
+        workImg.alt = work.title;
+        workImgWrapper.appendChild(workImg);
+
+        const trashIcon = document.createElement("i");  // Logo de la poubelle
+        trashIcon.className = "fas fa-trash-can trash-icon";  // Classe pour l'icône de la poubelle
+        workImgWrapper.appendChild(trashIcon);
+
+        workCard.appendChild(workImgWrapper);  // Ajout du wrapper à la carte projet
+
+        galleryModal.appendChild(workCard);  // Ajout de la carte à la galerie de la modal
+    });
+    
+}
+
+
+const modal = document.getElementById("myModal");
+const closeButton = document.querySelector(".close");
+
+// click bouton pour afficher la modal
 if (modifierButton) {
-    modifierButton.addEventListener('click', function () {
-        modal.style.display = 'block';  // Affichage de la modal
+    modifierButton.addEventListener('click', async function () {
+        await afficheWorksDansModal(); // apelle fonction travaux
+        modal.style.display = 'block';  // afficher la modal
     });
 }
 
-// Fermeture de la modal lorsqu'on clique sur le bouton de fermeture
+
 if (closeButton) {
-    closeButton.addEventListener('click', function () {
-        modal.style.display = 'none';  // Fermeture de la modal
+    closeButton.addEventListener('click', () => {
+        modal.style.display = 'none';  // Fermer la modal
     });
-
 }
 
-// Fermeture de la modal lorsqu'on clique en dehors de la modal
-window.addEventListener('click', function (event) {
+
+window.addEventListener('click', (event) => {
     if (event.target == modal) {
-        modal.style.display = 'none';  // Fermeture de la modal
+        modal.style.display = 'none';  // Fermer la modal si je clique en dehors
     }
 });
-
