@@ -346,6 +346,7 @@ footer nav ul {
     width: 80%;
     max-width: 600px;
     position: relative;
+	border-radius: 10px;
 }
 
 /* Bouton de fermeture */
@@ -380,6 +381,7 @@ footer nav ul {
     padding: 20px;
 	border-bottom: solid 1px black;
 	margin-bottom: 20px;
+	
 }
 
 
@@ -433,4 +435,16 @@ footer nav ul {
     background-color: #B1663C;
     border-color: #B1663C;
     color: white;
+}
+
+
+.adminmode {
+    background-color: black;
+    color: white;
+    width: 100%;
+    padding: 10px ; 
+    text-align: center; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
 }

@@ -233,8 +233,3 @@ if (closeButton) {
 }
 
 
-window.addEventListener('click', (event) => {
-    if (event.target == modal) {
-        modal.style.display = 'none';  // Fermer la modal si je clique en dehors
-    }
-});
