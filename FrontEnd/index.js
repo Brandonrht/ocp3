@@ -28,6 +28,26 @@ async function getApiCategories() {
     }
 }
 
+// Fonction pour supprimer un projet
+async function deleteWork(workId) {
+    const token = sessionStorage.getItem("SB_token");
+    try {
+        const response = await fetch(`${apiUrl}works/${workId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`Erreur lors de la suppression du projet : ${response.status}`);
+        }
+        await afficheWorksDansModal();
+        await AfficheWorks();
+    } catch (error) {
+        console.error(`Erreur lors de la suppression du projet : ${error}`);
+    }
+}
+
 // Affichage initial des projets
 async function AfficheWorks(categoryId = null) {
     const worksFromApi = await getApiWorks(); // Récupération des projets depuis l'API
@@ -111,7 +131,6 @@ function clickbutton() {
         });
     });
 }
-
 
 // Initialisation de l'affichage des projets et des filtres
 async function init() {
@@ -204,15 +223,16 @@ async function afficheWorksDansModal() {
 
         const trashIcon = document.createElement("i");  // Logo de la poubelle
         trashIcon.className = "fas fa-trash-can trash-icon";  // Classe pour l'icône de la poubelle
+        trashIcon.dataset.workId = work.id; // Ajout de l'ID du projet 
+        trashIcon.addEventListener('click', () => deleteWork(work.id));
+
         workImgWrapper.appendChild(trashIcon);
 
         workCard.appendChild(workImgWrapper);  // Ajout du wrapper à la carte projet
 
         galleryModal.appendChild(workCard);  // Ajout de la carte à la galerie de la modal
     });
-    
 }
-
 
 const modal = document.getElementById("myModal");
 const closeButton = document.querySelector(".close");
@@ -225,11 +245,8 @@ if (modifierButton) {
     });
 }
 
-
 if (closeButton) {
     closeButton.addEventListener('click', () => {
         modal.style.display = 'none';  // Fermer la modal
     });
 }
-
-
