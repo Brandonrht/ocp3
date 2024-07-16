@@ -28,25 +28,6 @@ async function getApiCategories() {
     }
 }
 
-// Fonction pour supprimer un projet
-async function deleteWork(workId) {
-    const token = sessionStorage.getItem("SB_token");
-    try {
-        const response = await fetch(`${apiUrl}works/${workId}`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        if (!response.ok) {
-            throw new Error(`Erreur lors de la suppression du projet : ${response.status}`);
-        }
-        await afficheWorksDansModal();
-        await AfficheWorks();
-    } catch (error) {
-        console.error(`Erreur lors de la suppression du projet : ${error}`);
-    }
-}
 
 // Affichage initial des projets
 async function AfficheWorks(categoryId = null) {
@@ -249,4 +230,20 @@ if (closeButton) {
     closeButton.addEventListener('click', () => {
         modal.style.display = 'none';  // Fermer la modal
     });
+}
+
+// Fonction pour supprimer un projet
+async function deleteWork(workId) {     //  declarer la Fonction
+    const token = sessionStorage.getItem("SB_token");  // on recupere le token
+        const response = await fetch(`${apiUrl}works/${workId}`, {  // 
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (!response.ok) {  //  verfier la reponse
+            throw new Error(`Erreur lors de la suppression du projet : ${response.status}`);
+        }
+        await afficheWorksDansModal();  // mise a jour
+        await AfficheWorks();
 }
