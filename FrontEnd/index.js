@@ -205,7 +205,13 @@ async function afficheWorksDansModal() {
         const trashIcon = document.createElement("i");  // Logo de la poubelle
         trashIcon.className = "fas fa-trash-can trash-icon";  // Classe pour l'icône de la poubelle
         trashIcon.dataset.workId = work.id; // Ajout de l'ID du projet 
-        trashIcon.addEventListener('click', () => deleteWork(work.id));
+        trashIcon.addEventListener('click', () => {
+            deleteWork(work.id);
+            reafiche();
+        });
+
+
+        // await afficheWorksDansModal();  // mise a jour
 
         workImgWrapper.appendChild(trashIcon);
 
@@ -213,6 +219,9 @@ async function afficheWorksDansModal() {
 
         galleryModal.appendChild(workCard);  // Ajout de la carte à la galerie de la modal
     });
+}
+async function reafiche() {
+    await afficheWorksDansModal()
 }
 
 const modal = document.getElementById("myModal");
@@ -235,15 +244,14 @@ if (closeButton) {
 // Fonction pour supprimer un projet
 async function deleteWork(workId) {     //  declarer la Fonction
     const token = sessionStorage.getItem("SB_token");  // on recupere le token
-        const response = await fetch(`${apiUrl}works/${workId}`, {  // 
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        if (!response.ok) {  //  verfier la reponse
-            throw new Error(`Erreur lors de la suppression du projet : ${response.status}`);
+    const response = await fetch(`${apiUrl}works/${workId}`, {  // 
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
         }
-        await afficheWorksDansModal();  // mise a jour
-        await AfficheWorks();
+    });
+    if (!response.ok) {  //  verfier la reponse
+        throw new Error(`Erreur lors de la suppression du projet : ${response.status}`);
+    }
+
 }
