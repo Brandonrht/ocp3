@@ -181,15 +181,15 @@ if (logoutButton) {
     });
 }
 
-// Sélection du bouton "Modifier"
-const modifierButton = document.querySelector('.bts-modif');
 
 // Fonction pour afficher les travaux dans la modal
 async function afficheWorksDansModal() {
+    setupAddButton();
     const worksFromApi = await getApiWorks(); // Récupération des projets depuis l'API
     const galleryModal = document.querySelector(".gallery-modal"); // Sélection de la galerie dans la modal
-    galleryModal.innerHTML = ""; // Nettoyage de la galerie existante
+    galleryModal.innerHTML = ""; // Nettoyage de la galerie existante   
 
+    document.addEventListener('keydown', disableRefresh); // on desactive reactive la touche F5
     worksFromApi.forEach(work => {
         const workCard = document.createElement("figure");  // Création de la carte projet
         workCard.dataset.id = `categorie${work.categoryId}`;
@@ -210,16 +210,14 @@ async function afficheWorksDansModal() {
             reafiche();
         });
 
-
-        // await afficheWorksDansModal();  // mise a jour
-
+        
         workImgWrapper.appendChild(trashIcon);
-
         workCard.appendChild(workImgWrapper);  // Ajout du wrapper à la carte projet
-
         galleryModal.appendChild(workCard);  // Ajout de la carte à la galerie de la modal
     });
 }
+
+
 async function reafiche() {
     await afficheWorksDansModal()
 }
@@ -227,17 +225,18 @@ async function reafiche() {
 const modal = document.getElementById("myModal");
 const closeButton = document.querySelector(".close");
 
-// click bouton pour afficher la modal
-if (modifierButton) {
-    modifierButton.addEventListener('click', async function () {
-        await afficheWorksDansModal(); // apelle fonction travaux
-        modal.style.display = 'block';  // afficher la modal
-    });
-}
+
+bts_modif.addEventListener('click', async function () {
+    await afficheWorksDansModal(); // apelle fonction travaux
+    modal.style.display = 'block';  // afficher la modal
+});
+
 
 if (closeButton) {
     closeButton.addEventListener('click', () => {
         modal.style.display = 'none';  // Fermer la modal
+        document.removeEventListener('keydown', disableRefresh); //on reactive la touche F5
+        init(); //rafraichir les données une fois la modale quitté
     });
 }
 
@@ -255,3 +254,48 @@ async function deleteWork(workId) {     //  declarer la Fonction
     }
 
 }
+
+function disableRefresh(event) {
+    if ((event.key === 'F5') || (event.ctrlKey && event.key === 'r')) {
+        event.preventDefault();
+        //        alert("Le rafraîchissement de la page est désactivé !");
+    }
+}
+
+
+// Fonction pour remplir les catégories dans le formulaire d'ajout
+async function remplirCategoriesFormulaire() {
+    const categories = await getApiCategories();
+    const selectElement = document.getElementById('workCategory');
+    selectElement.innerHTML = '';
+
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category.id;
+        option.textContent = category.name;
+        selectElement.appendChild(option);
+    });
+}
+
+// Fonction pour afficher le formulaire d'ajout de photo
+function setupAddButton() {
+    const addButton = document.querySelector('.bts-ajout');
+    const formContainer = document.querySelector('.form-container');
+    const galleryModal = document.querySelector('.gallery-modal');
+    const modalTitle = document.getElementById('galleryTitle');
+    const addPhotoTitle = document.getElementById('addPhotoTitle');
+    const ajouterPhotoButton = document.getElementById('ajouterPhotoButton');
+
+    if (addButton) {
+        addButton.addEventListener('click', async () => {
+            await remplirCategoriesFormulaire();
+            galleryModal.style.display = 'none';
+            formContainer.style.display = 'block';
+            modalTitle.style.display = 'none';
+            addPhotoTitle.style.display = 'block';
+            ajouterPhotoButton.style.display = 'none';
+        });
+    }
+}
+
+
