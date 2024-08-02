@@ -84,12 +84,12 @@ time,
 mark,
 audio,
 video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -104,229 +104,230 @@ hgroup,
 menu,
 nav,
 section {
-	display: block;
+    display: block;
 }
 
 body {
-	line-height: 1;
+    line-height: 1;
 }
 
 ol,
 ul {
-	list-style: none;
+    list-style: none;
 }
 
 blockquote,
 q {
-	quotes: none;
+    quotes: none;
 }
 
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-	content: '';
-	content: none;
+    content: '';
+    content: none;
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 /** end reset css**/
 body {
-	max-width: 1140px;
-	margin: auto;
-	font-family: 'Work Sans';
-	font-size: 14px;
+    max-width: 1140px;
+    margin: auto;
+    font-family: 'Work Sans';
+    font-size: 14px;
 }
 
 header {
-	display: flex;
-	justify-content: space-between;
-	margin: 50px 0
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0
 }
 
 section {
-	margin: 50px 0
+    margin: 50px 0
 }
 
 h1 {
-	display: flex;
-	flex-direction: column;
-	font-family: 'Syne';
-	font-size: 22px;
-	font-weight: 800;
-	color: #B1663C
+    display: flex;
+    flex-direction: column;
+    font-family: 'Syne';
+    font-size: 22px;
+    font-weight: 800;
+    color: #B1663C
 }
 
 h1>span {
-	font-family: 'Work Sans';
-	font-size: 10px;
-	letter-spacing: 0.1em;
-	;
+    font-family: 'Work Sans';
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    ;
 }
 
 h2 {
-	font-family: 'Syne';
-	font-weight: 700;
-	font-size: 30px;
-	color: #1D6154
+    font-family: 'Syne';
+    font-weight: 700;
+    font-size: 30px;
+    color: #1D6154
 }
 
 nav ul {
-	display: flex;
-	align-items: center;
-	list-style-type: none;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
 
 }
 
 nav li {
-	padding: 0 10px;
-	font-size: 1.2em;
+    padding: 0 10px;
+    font-size: 1.2em;
 }
 
 li:hover {
-	color: #B1663C;
+    color: #B1663C;
 }
 
 #introduction {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 #introduction figure {
-	flex: 1
+    flex: 1
 }
 
 #introduction img {
-	display: block;
-	margin: auto;
-	width: 80%;
+    display: block;
+    margin: auto;
+    width: 80%;
 }
 
 #introduction article {
-	flex: 1
+    flex: 1
 }
 
 #introduction h2 {
-	margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 #introduction p {
-	margin-bottom: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 #portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
+    text-align: center;
+    margin-bottom: 1em;
 }
 
 .gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
 }
 
 .gallery img {
-	width: 100%;
+    width: 100%;
 
 }
 
 #contact {
-	width: 50%;
-	margin: auto;
+    width: 50%;
+    margin: auto;
 }
 
 #contact>* {
-	text-align: center;
+    text-align: center;
 
 }
 
 #contact h2 {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 #contact form {
-	text-align: left;
-	margin-top: 30px;
-	display: flex;
-	flex-direction: column;
+    text-align: left;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 #contact input {
-	height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    height: 50px;
+    font-size: 1.2em;
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
 #contact label {
-	margin: 2em 0 1em 0;
+    margin: 2em 0 1em 0;
 }
 
 #contact textarea {
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
 input[type="submit"] {
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
-	margin: 2em auto;
-	width: 180px;
-	text-align: center;
-	border-radius: 60px;
+    font-family: 'Syne';
+    font-weight: 700;
+    color: white;
+    background-color: #1D6154;
+    margin: 2em auto;
+    width: 180px;
+    text-align: center;
+    border-radius: 60px;
 }
 
 footer nav ul {
-	display: flex;
-	justify-content: flex-end;
-	margin: 2em
+    display: flex;
+    justify-content: flex-end;
+    margin: 2em
 }
 
 .filters {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	gap: 15px;
-	margin-bottom: 60px;
-	padding-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 60px;
+    padding-top: 50px;
 }
 
 .bouton-filtre {
-	font-family: 'Syne';
-	font-weight: 700;
-	color: #1D6154;
-	background-color: white;
-	text-align: center;
-	border-radius: 60px;
-	border: 2px solid #1D6154;
-	padding: 10px 30px;
-	cursor: pointer;
-	margin-bottom: 20px;
+    font-family: 'Syne';
+    font-weight: 700;
+    color: #1D6154;
+    background-color: white;
+    text-align: center;
+    border-radius: 60px;
+    border: 2px solid #1D6154;
+    padding: 10px 30px;
+    cursor: pointer;
+    margin-bottom: 20px;
 
 }
 
 .bouton-filtre:focus {
-	background-color: #1D6154;
-	color: white;
+    background-color: #1D6154;
+    color: white;
 }
 
-.bouton-filtre:hover{
-	background-color: #1D6154;
-	color: white;
+.bouton-filtre:hover {
+    background-color: #1D6154;
+    color: white;
 }
 
 
-/* Modal styles */
+/* Styles pour la modal */
 .modal {
-    display: none; /* Cachée initialement */
+    display: none;
+    /* Cachée initialement */
     position: fixed;
     z-index: 1;
     left: 0;
@@ -334,26 +335,32 @@ footer nav ul {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    /* Ajouter box-sizing */
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 5% auto;
+    /* Ajustez la marge pour centrer correctement */
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
     max-width: 600px;
     position: relative;
-	border-radius: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    /* Ajouter box-sizing */
 }
 
 /* Bouton de fermeture */
 .close {
     position: absolute;
     right: 10px;
-    top: 0;
+    top: 10px;
+    /* Ajoutez un peu de marge en haut pour éviter de coller au bord */
     color: #aaa;
     font-size: 28px;
     font-weight: bold;
@@ -367,37 +374,46 @@ footer nav ul {
     cursor: pointer;
 }
 
-
-.modal-title{
-	color: black;
-	
+.modal-title {
+    color: black;
+    text-align: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    /* Ajouter box-sizing */
 }
 
-/* Style pour la modal */
+/* Styles pour la galerie dans la modal */
 .gallery-modal {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); 
+    grid-template-columns: repeat(5, 1fr);
     gap: 16px;
     padding: 20px;
-	border-bottom: solid 1px black;
-	margin-bottom: 20px;
-	
+    border-bottom: solid 1px black;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    /* Ajouter box-sizing */
 }
-
 
 .gallery-modal figure {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    /* Ajouter box-sizing */
 }
 
 .gallery-modal img {
     width: 100%;
     height: auto;
     display: block;
+    box-sizing: border-box;
+    /* Ajouter box-sizing */
 }
 
 .gallery-modal figcaption {
-    display: none; 
+    display: none;
 }
 
 .image-wrapper {
@@ -407,16 +423,13 @@ footer nav ul {
 
 .trash-icon {
     position: absolute;
-    top: 5px; 
-    right: 5px; 
-    color: black; 
-    font-size: 16px; 
+    top: 5px;
+    right: 5px;
+    color: black;
+    font-size: 16px;
 }
 
-
-/* bouton ajout photo  */
-
-
+/* Style pour le bouton ajout de photo */
 .bts-ajout {
     font-family: 'Syne';
     font-weight: 700;
@@ -429,6 +442,8 @@ footer nav ul {
     cursor: pointer;
     margin-bottom: 20px;
     display: inline-block;
+    box-sizing: border-box;
+    /* Ajouter box-sizing */
 }
 
 .bts-ajout:hover {
@@ -437,80 +452,69 @@ footer nav ul {
     color: white;
 }
 
-
-.adminmode {
-    background-color: black;
-    color: white;
-    width: 100%;
-    padding: 10px ; 
-    text-align: center; 
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-}
-
-/* Styles pour la modal */
-
-.modal-content {
-    position: relative;
-}
-
-.modal-title {
-    color: black;
-    text-align: center;
-    font-family: 'Syne', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
+/* Styles pour le formulaire d'ajout de photo */
 .form-container {
     margin-top: 20px;
+    display: none;
+    box-sizing: border-box;
+    /* Ajouter box-sizing */
 }
 
 .upload-photo-section {
     text-align: center;
     background-color: #e0f7fa;
-    padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
     position: relative;
+    box-sizing: border-box;
+    /* Ajouter box-sizing */
 }
 
 .upload-photo-section i {
     font-size: 50px;
     color: #1D6154;
     margin-bottom: 10px;
+    box-sizing: border-box;
+    /* Ajouter box-sizing */
 }
 
 .upload-photo-section input[type="file"] {
-    display: none; /* Masquer le champ de fichier */
+    display: none;
+    /* Masquer le champ de fichier */
 }
 
+/* Styles pour le bouton "Ajouter une photo" */
 .upload-photo-section .upload-photo-button {
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
-    color: rgba(5, 124, 235, 0.993);
+    color: var(--light-gray);
+    /* Utilisation de la couleur définie */
     background-color: #555;
     border: 1px solid #1D6154;
     border-radius: 5px;
     padding: 10px;
     margin-top: 10px;
-	display: flex;
-	justify-content: center;
-	border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
 }
+
 
 .upload-photo-section .file-formats {
     font-family: 'Work Sans', sans-serif;
     font-size: 12px;
     color: #555;
     margin-top: 10px;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+    /* Ajouter box-sizing */
 }
 
 .form-group {
     margin-bottom: 15px;
+    box-sizing: border-box;
+    /* Ajouter box-sizing */
 }
 
 .form-group label {
@@ -519,6 +523,8 @@ footer nav ul {
     font-family: 'Work Sans', sans-serif;
     font-size: 16px;
     color: #333;
+    box-sizing: border-box;
+    /* Ajouter box-sizing */
 }
 
 .form-group input,
@@ -529,18 +535,29 @@ footer nav ul {
     border-radius: 5px;
     font-family: 'Work Sans', sans-serif;
     font-size: 16px;
+    box-sizing: border-box;
+    /* Ajouter box-sizing */
 }
 
 .submit-button {
     width: 100%;
     padding: 10px;
-    background-color: #ccc;
+    background-color: #1D6154;
+    /* Change to your primary color */
     color: white;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    box-sizing: border-box;
+    /* Ajouter box-sizing */
 }
+
+.submit-button:hover {
+    background-color: #B1663C;
+    /* Change to your hover color */
+}
+
 /*  icon retour */
 .back-icon {
     position: absolute;
@@ -548,5 +565,73 @@ footer nav ul {
     left: 10px;
     font-size: 24px;
     cursor: pointer;
-    /* display: none; Initialement cachée  */
+    display: none;
+    /* Cachée par défaut */
 }
+
+/* Couleur gris clair */
+:root {
+    --light-gray: #e0e0e0;
+    /* Vous pouvez ajuster cette couleur si nécessaire */
+}
+
+/* Styles pour l'icône image */
+.upload-photo-section i {
+    font-size: 50px;
+    color: var(--light-gray);
+    /* Utilisation de la couleur définie */
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+.image-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 200px;
+    /* Permettre à l'image de s'ajuster */
+    background-color: #e0f7fa;
+    /* Couleur de fond bleu clair */
+    position: relative;
+    /* Pour permettre le positionnement absolu de l'image */
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    display: none;
+}
+
+
+
+.image-selected .upload-photo-button,
+.image-selected .file-formats,
+.image-selected #imageIcon,
+.image-selected #workImage {
+    display: none;
+}
+
+.image-selected img {
+    display: block;
+
+    height: 200px;
+}
+
+.adminmode {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    height: 40px; /* Ajustez la hauteur selon vos besoins */
+}
+

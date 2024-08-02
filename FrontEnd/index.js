@@ -1,5 +1,6 @@
 const apiUrl = 'http://localhost:5678/api/';
 
+
 // Fonction pour récupérer les projets depuis l'API
 async function getApiWorks() {
     try {
@@ -210,7 +211,7 @@ async function afficheWorksDansModal() {
             reafiche();
         });
 
-        
+
         workImgWrapper.appendChild(trashIcon);
         workCard.appendChild(workImgWrapper);  // Ajout du wrapper à la carte projet
         galleryModal.appendChild(workCard);  // Ajout de la carte à la galerie de la modal
@@ -252,7 +253,7 @@ async function deleteWork(workId) {     //  declarer la Fonction
     if (!response.ok) {  //  verfier la reponse
         throw new Error(`Erreur lors de la suppression du projet : ${response.status}`);
     }
-
+    return response.status;
 }
 
 function disableRefresh(event) {
@@ -285,6 +286,7 @@ function setupAddButton() {
     const modalTitle = document.getElementById('galleryTitle');
     const addPhotoTitle = document.getElementById('addPhotoTitle');
     const ajouterPhotoButton = document.getElementById('ajouterPhotoButton');
+    const backIcon = document.querySelector('.back-icon'); // Sélectionner l'icône de flèche gauche
 
     if (addButton) {
         addButton.addEventListener('click', async () => {
@@ -294,8 +296,62 @@ function setupAddButton() {
             modalTitle.style.display = 'none';
             addPhotoTitle.style.display = 'block';
             ajouterPhotoButton.style.display = 'none';
+            backIcon.style.display = 'block'; // Afficher l'icône de flèche gauche
+        });
+    }
+
+    if (backIcon) {
+        backIcon.addEventListener('click', () => {
+            formContainer.style.display = 'none';
+            galleryModal.style.display = 'grid';
+            modalTitle.style.display = 'block';
+            addPhotoTitle.style.display = 'none';
+            ajouterPhotoButton.style.display = 'inline-block';
+            backIcon.style.display = 'none';
         });
     }
 }
 
+if (closeButton) {
+    closeButton.addEventListener('click', () => {
+        modal.style.display = 'none';  // Fermer la modal
+        document.removeEventListener('keydown', disableRefresh); //on reactive la touche F5
+        init(); //rafraichir les données une fois la modale quitté
+        const backIcon = document.querySelector('.back-icon'); // Sélectionner l'icône de flèche gauche
+        backIcon.style.display = 'none'; // Masquer l'icône de flèche gauche
+    });
+}
 
+
+
+// Fonction pour afficher l'aperçu de l'image sélectionnée
+function displayImagePreview(event) {
+    const imagePreviewContainer = document.getElementById('imagePreview');
+    const uploadPhotoSection = document.getElementById('uploadPhotoSection');
+    const file = event.target.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            imagePreviewContainer.innerHTML = ''; // Effacer le contenu précédent
+            imagePreviewContainer.appendChild(img);
+            uploadPhotoSection.classList.add('image-selected'); // Ajouter la classe pour masquer les éléments non nécessaires
+        }
+        reader.readAsDataURL(file);
+    }
+}
+
+// déclaration de la fonction addImageChangeListener
+function addImageChangeListener() {
+    const workImageInput = document.getElementById('workImage');
+    if (workImageInput) {
+        workImageInput.addEventListener('change', displayImagePreview);
+    } else {
+        console.error('Élément de saisie d\'image non trouvé');
+    }
+}
+
+// setupAddButton pour appeler addImageChangeListener
+addImageChangeListener(); // Ajouter l'écouteur d'événement pour l'image ici

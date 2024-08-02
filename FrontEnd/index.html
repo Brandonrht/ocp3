@@ -63,8 +63,10 @@
                         <button class="bts-ajout" id="ajouterPhotoButton">Ajouter une photo</button>
                         <div class="form-container" style="display: none;">
                             <form id="addWorkForm">
-                                <div class="upload-photo-section">
-                                    <i class="fa-regular fa-image"></i>
+                                <div class="upload-photo-section" id="uploadPhotoSection">
+                                    <div id="imagePreview" class="image-preview">
+                                        <i class="fa-regular fa-image" id="imageIcon"></i>
+                                    </div>
                                     <input type="file" id="workImage" name="workImage" accept="image/*" required>
                                     <label for="workImage" class="upload-photo-button">+ Ajouter photo</label>
                                     <p class="file-formats">jpg, png : 4mo max</p>
@@ -84,6 +86,8 @@
                         </div>
                     </div>
                 </div>
+                
+                
 
             </h2>
             <div class="filters" id="filtersContainer">
