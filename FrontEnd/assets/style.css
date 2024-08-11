@@ -345,7 +345,7 @@ footer nav ul {
     background-color: #fefefe;
     margin: 5% auto;
     /* Ajustez la marge pour centrer correctement */
-    padding: 20px;
+    padding: 80px;
     border: 1px solid #888;
     width: 80%;
     max-width: 600px;
@@ -470,13 +470,7 @@ footer nav ul {
     /* Ajouter box-sizing */
 }
 
-.upload-photo-section i {
-    font-size: 50px;
-    color: #1D6154;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    /* Ajouter box-sizing */
-}
+
 
 .upload-photo-section input[type="file"] {
     display: none;
@@ -488,16 +482,17 @@ footer nav ul {
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
-    color: var(--light-gray);
+    color: #2491bb;
     /* Utilisation de la couleur définie */
-    background-color: #555;
-    border: 1px solid #1D6154;
+    background-color: var(--light-gray);
     border-radius: 5px;
     padding: 10px;
     margin-top: 10px;
     display: flex;
     justify-content: center;
     border-radius: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 
@@ -507,7 +502,7 @@ footer nav ul {
     color: #555;
     margin-top: 10px;
     box-sizing: border-box;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     /* Ajouter box-sizing */
 }
 
@@ -523,6 +518,8 @@ footer nav ul {
     font-family: 'Work Sans', sans-serif;
     font-size: 16px;
     color: #333;
+    text-align: start;
+    padding-left: 8px;
     box-sizing: border-box;
     /* Ajouter box-sizing */
 }
@@ -535,18 +532,20 @@ footer nav ul {
     border-radius: 5px;
     font-family: 'Work Sans', sans-serif;
     font-size: 16px;
+    box-shadow: 1px 1px 3px gray;
     box-sizing: border-box;
     /* Ajouter box-sizing */
+    margin: 10px;
 }
 
 .submit-button {
-    width: 100%;
+    width: 50%;
     padding: 10px;
     background-color: #1D6154;
     /* Change to your primary color */
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     font-size: 16px;
     cursor: pointer;
     box-sizing: border-box;
@@ -572,15 +571,15 @@ footer nav ul {
 /* Couleur gris clair */
 :root {
     --light-gray: #e0e0e0;
-    /* Vous pouvez ajuster cette couleur si nécessaire */
 }
 
 /* Styles pour l'icône image */
 .upload-photo-section i {
-    font-size: 50px;
+    font-size: 80px;
     color: var(--light-gray);
     /* Utilisation de la couleur définie */
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 
@@ -595,7 +594,7 @@ footer nav ul {
     border-radius: 10px;
     box-sizing: border-box;
     width: 100%;
-    height: 200px;
+    height: 100px;
     /* Permettre à l'image de s'ajuster */
     background-color: #e0f7fa;
     /* Couleur de fond bleu clair */
@@ -632,6 +631,6 @@ footer nav ul {
     align-items: center;
     top: 0;
     left: 0;
-    height: 40px; /* Ajustez la hauteur selon vos besoins */
+    height: 40px;
+    /* Ajustez la hauteur selon vos besoins */
 }
-

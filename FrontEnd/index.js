@@ -169,6 +169,8 @@ async function init() {
             adminModeElement.style.display = "none";
         }
     }
+    // Ajouter l'écouteur d'événement pour la fermeture de la modal en cliquant en dehors
+    addModalClickListener();
 }
 
 init();
@@ -181,7 +183,6 @@ if (logoutButton) {
         window.location.replace("login.html");  // Redirection vers la page de login
     });
 }
-
 
 // Fonction pour afficher les travaux dans la modal
 async function afficheWorksDansModal() {
@@ -237,6 +238,7 @@ if (closeButton) {
     closeButton.addEventListener('click', () => {
         modal.style.display = 'none';  // Fermer la modal
         document.removeEventListener('keydown', disableRefresh); //on reactive la touche F5
+        resetModal();
         init(); //rafraichir les données une fois la modale quitté
     });
 }
@@ -355,3 +357,93 @@ function addImageChangeListener() {
 
 // setupAddButton pour appeler addImageChangeListener
 addImageChangeListener(); // Ajouter l'écouteur d'événement pour l'image ici
+
+function addModalClickListener() {
+    window.addEventListener('click', (event) => {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+            document.removeEventListener('keydown', disableRefresh); // Réactiver la touche F5
+            resetModal(); // Réinitialiser la modal à son état d'origine
+            init();
+        }
+    });
+}
+
+
+// Fonction pour réinitialiser la modal
+function resetModal() {
+    const formContainer = document.querySelector('.form-container');
+    const galleryModal = document.querySelector('.gallery-modal');
+    const modalTitle = document.getElementById('galleryTitle');
+    const addPhotoTitle = document.getElementById('addPhotoTitle');
+    const ajouterPhotoButton = document.getElementById('ajouterPhotoButton');
+    const backIcon = document.querySelector('.back-icon'); // Sélectionner l'icône de flèche gauche
+
+    // Réinitialiser le formulaire
+    const addWorkForm = document.getElementById('addWorkForm');
+    addWorkForm.reset();
+
+    // Réinitialiser l'aperçu de l'image
+    const imagePreviewContainer = document.getElementById('imagePreview');
+    imagePreviewContainer.innerHTML = '<i class="fa-regular fa-image" id="imageIcon"></i>'; // Remettre l'icône d'image
+    const uploadPhotoSection = document.getElementById('uploadPhotoSection');
+    uploadPhotoSection.classList.remove('image-selected');
+
+    // Masquer et afficher les éléments appropriés
+    formContainer.style.display = 'none';
+    galleryModal.style.display = 'grid';
+    modalTitle.style.display = 'block';
+    addPhotoTitle.style.display = 'none';
+    ajouterPhotoButton.style.display = 'inline-block';
+    backIcon.style.display = 'none';
+}
+
+async function envoyerFormulaireAjoutPhoto(event) {
+    event.preventDefault();
+
+    const token = sessionStorage.getItem("SB_token");
+    if (!token) {
+        console.error("Token manquant");
+        return;
+    }
+
+    const workImage = document.getElementById('workImage').files[0];
+    const workTitle = document.getElementById('workTitle').value;
+    const workCategory = document.getElementById('workCategory').value;
+
+    if (!workImage || !workTitle || !workCategory) {
+        console.error("Tous les champs du formulaire doivent être remplis");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('image', workImage);
+    formData.append('title', workTitle);
+    formData.append('category', workCategory);
+
+    try {
+        const response = await fetch(`${apiUrl}works`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erreur lors de l'ajout du projet : ${response.status}`);
+        }
+
+        // Rafraîchir l'affichage après l'ajout de l'image
+        console.log("Projet ajouté avec succès");
+        resetModal();
+        modal.style.display = 'none';
+        await AfficheWorks();
+    } catch (error) {
+        console.error("Erreur :", error);
+        alert("Une erreur s'est produite lors de l'ajout du projet. Veuillez réessayer.");
+    }
+}
+
+// Ajoutez un écouteur d'événement pour le formulaire d'ajout de photo
+document.getElementById('addWorkForm').addEventListener('submit', envoyerFormulaireAjoutPhoto);

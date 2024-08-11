@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
         rel="stylesheet">
-        <link rel="icon" href="./assets/images/favicon.ico">
+    <link rel="icon" href="./assets/images/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <meta name="description" content="">
     <link rel="stylesheet" href="./assets/style.css">
@@ -62,7 +62,7 @@
                         </div>
                         <button class="bts-ajout" id="ajouterPhotoButton">Ajouter une photo</button>
                         <div class="form-container" style="display: none;">
-                            <form id="addWorkForm">
+                            <form id="addWorkForm" method="POST" enctype="multipart/form-data">
                                 <div class="upload-photo-section" id="uploadPhotoSection">
                                     <div id="imagePreview" class="image-preview">
                                         <i class="fa-regular fa-image" id="imageIcon"></i>
@@ -72,11 +72,11 @@
                                     <p class="file-formats">jpg, png : 4mo max</p>
                                 </div>
                                 <div class="form-group">
-                                    <label for="workTitle">Titre:</label>
+                                    <label for="workTitle">Titre</label>
                                     <input type="text" id="workTitle" name="workTitle" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="workCategory">Catégorie:</label>
+                                    <label for="workCategory">Catégorie</label>
                                     <select id="workCategory" name="workCategory" required>
                                         <!-- Les options seront générées via JavaScript -->
                                     </select>
@@ -86,8 +86,8 @@
                         </div>
                     </div>
                 </div>
-                
-                
+
+
 
             </h2>
             <div class="filters" id="filtersContainer">
