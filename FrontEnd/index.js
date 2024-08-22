@@ -447,3 +447,4 @@ async function envoyerFormulaireAjoutPhoto(event) {
 
 // Ajoutez un écouteur d'événement pour le formulaire d'ajout de photo
 document.getElementById('addWorkForm').addEventListener('submit', envoyerFormulaireAjoutPhoto);
+
