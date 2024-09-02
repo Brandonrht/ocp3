@@ -401,13 +401,15 @@ function resetModal() {
 async function envoyerFormulaireAjoutPhoto(event) {
     event.preventDefault();
 
+    // Récupération du token d'authentification
     const token = sessionStorage.getItem("SB_token");
     if (!token) {
         console.error("Token manquant");
         return;
     }
 
-    const workImage = document.getElementById('workImage').files[0];
+    // recupere donnée formulaire 
+    const workImage = document.getElementById('workImage').files[0];   
     const workTitle = document.getElementById('workTitle').value;
     const workCategory = document.getElementById('workCategory').value;
 
@@ -415,12 +417,12 @@ async function envoyerFormulaireAjoutPhoto(event) {
         console.error("Tous les champs du formulaire doivent être remplis");
         return;
     }
-
+    // Création d'un objet FormData
     const formData = new FormData();
     formData.append('image', workImage);
     formData.append('title', workTitle);
     formData.append('category', workCategory);
-
+    // Envoi de la requête POST
     try {
         const response = await fetch(`${apiUrl}works`, {
             method: 'POST',
