@@ -189,33 +189,36 @@ async function afficheWorksDansModal() {
     setupAddButton();
     const worksFromApi = await getApiWorks(); // Récupération des projets depuis l'API
     const galleryModal = document.querySelector(".gallery-modal"); // Sélection de la galerie dans la modal
-    galleryModal.innerHTML = ""; // Nettoyage de la galerie existante   
+    const galleryMain = document.querySelector(".gallery"); // Sélection de la galerie principale
+    galleryModal.innerHTML = ""; // Nettoyage de la galerie existante
 
-    document.addEventListener('keydown', disableRefresh); // on desactive reactive la touche F5
     worksFromApi.forEach(work => {
-        const workCard = document.createElement("figure");  // Création de la carte projet
-        workCard.dataset.id = `categorie${work.categoryId}`;
+        const workCardModal = document.createElement("figure");  // Création de la carte projet pour la modal
+        workCardModal.dataset.id = `categorie${work.categoryId}`;
 
         const workImgWrapper = document.createElement("div");  // Wrapper pour l'image et le logo
         workImgWrapper.className = "image-wrapper";
 
-        const workImg = document.createElement("img");  // Image du projet
+        const workImg = document.createElement("img");  // Image du projet dans la modal
         workImg.src = work.imageUrl;
         workImg.alt = work.title;
         workImgWrapper.appendChild(workImg);
 
-        const trashIcon = document.createElement("i");  // Logo de la poubelle
+        const trashIcon = document.createElement("i");  // Logo de la poubelle dans la modal
         trashIcon.className = "fas fa-trash-can trash-icon";  // Classe pour l'icône de la poubelle
-        trashIcon.dataset.workId = work.id; // Ajout de l'ID du projet 
+        trashIcon.dataset.workId = work.id; // Ajout de l'ID du projet
+
+        // Rechercher l'élément correspondant dans la galerie principale
+        const workCardGallery = galleryMain.querySelector(`[data-id="categorie${work.categoryId}"]`);
+
+        // Ajout de l'événement click pour supprimer le projet
         trashIcon.addEventListener('click', () => {
-            deleteWork(work.id);
-            reafiche();
+            deleteWork(work.id, workCardModal, workCardGallery);  // Passe l'élément de la modal et de la galerie
         });
 
-
         workImgWrapper.appendChild(trashIcon);
-        workCard.appendChild(workImgWrapper);  // Ajout du wrapper à la carte projet
-        galleryModal.appendChild(workCard);  // Ajout de la carte à la galerie de la modal
+        workCardModal.appendChild(workImgWrapper);  // Ajout du wrapper à la carte projet dans la modal
+        galleryModal.appendChild(workCardModal);  // Ajout de la carte à la galerie de la modal
     });
 }
 
@@ -244,24 +247,27 @@ if (closeButton) {
 }
 
 // Fonction pour supprimer un projet
-async function deleteWork(workId) {     //  declarer la Fonction
-    const token = sessionStorage.getItem("SB_token");  // on recupere le token
-    const response = await fetch(`${apiUrl}works/${workId}`, {  // 
-        method: 'DELETE',
-        headers: {
-            'Authorization': `Bearer ${token}`
+async function deleteWork(workId, workCardElementModal, workCardElementGallery) {
+    const token = sessionStorage.getItem("SB_token");  // On récupère le token
+    try {
+        const response = await fetch(`${apiUrl}works/${workId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`Erreur lors de la suppression du projet : ${response.status}`);
         }
-    });
-    if (!response.ok) {  //  verfier la reponse
-        throw new Error(`Erreur lors de la suppression du projet : ${response.status}`);
-    }
-    return response.status;
-}
 
-function disableRefresh(event) {
-    if ((event.key === 'F5') || (event.ctrlKey && event.key === 'r')) {
-        event.preventDefault();
-        //        alert("Le rafraîchissement de la page est désactivé !");
+        // Suppression réussie, on retire l'élément de la modal et de la galerie principale
+        workCardElementModal.remove();  // Supprime l'élément visuellement de la modal
+        if (workCardElementGallery) {
+            workCardElementGallery.remove();  // Supprime également de la galerie principale si présente
+        }
+
+    } catch (error) {
+        console.error("Erreur lors de la suppression :", error);
     }
 }
 
@@ -409,9 +415,9 @@ async function envoyerFormulaireAjoutPhoto(event) {
     }
 
     // recupere donnée formulaire 
-    const workImage = document.getElementById('workImage').files[0];   
-    const workTitle = document.getElementById('workTitle').value;
-    const workCategory = document.getElementById('workCategory').value;
+    const workImage = document.getElementById('workImage').files[0];   //image
+    const workTitle = document.getElementById('workTitle').value; //text worktitle
+    const workCategory = document.getElementById('workCategory').value;  // categorie
 
     if (!workImage || !workTitle || !workCategory) {
         console.error("Tous les champs du formulaire doivent être remplis");
